@@ -17,9 +17,9 @@ class EventController extends Controller
         return view('list');
     }
     
-      public function save_event(Request $request)
+    public function save_event(Request $request)
     {
-      event_list();
+      $this->event_list();
       
             $validator = Validator::make($request->all(),[
             'event_title' => 'required|string|max:150',
@@ -35,15 +35,6 @@ class EventController extends Controller
              $request['event_end_date']= $request['event_start_date'];
             }
            
-
-            
-        //$usem = app(\App\Http\Controllers\UserContoller::class)->retEmail();
-         $useremail = 'dominikm25@gmail.com';
-         $query = User::where('email',$useremail)->value('id');
-         
-
-           
-            $request->merge(["user_id"=>$query]); 
              $request['event_start_date']=implode("-", array_reverse(explode("/", $request['event_start_date'])));
              $request['event_end_date']= implode("-", array_reverse(explode("/", $request['event_end_date'])));
              

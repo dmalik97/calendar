@@ -27,9 +27,10 @@
                   <div class="row">
                     <div class="col-lg-12 col-xs-12">
                       <div class="form-group">
+                        <input  type="hidden" name="user_id" value="{{Auth::user()->id}}" />  
                         <input type="text" name="event_title" id="event_title" required=""  class="form-control" placeholder="Tytuł wydarzenia">
-                        <input  type="hidden" id="set_start_time_data" value="No" />  
-                        <input  type="hidden" id="set_end_time_data" value="No" />  
+                        <input  type="hidden" id="set_start_time_data" name="set_start_time_data" value="No" />  
+                        <input  type="hidden" name="set_end_time_data" id="set_end_time_data" value="No" />  
                         <input  type="hidden" name="set_end_date_data" id="set_end_date_data" value="No" />  
                       </div>
                     </div>
@@ -135,11 +136,12 @@
                     <div class="col-lg-12 col-xs-12">
                       <div class="form-group">
                         <label class="">Tytuł wydarzenia</label>
+                        <input  type="hidden" name="user_id" value="{{Auth::user()->id}}" />  
                         <input type="text" name="event_title" id="edit_event_title" required=""  class="form-control" placeholder="Tytuł wydarzenia">
                       </div>
                       <input type="hidden" id="edit_event_id" value="" name="id" />  
-                      <input type="hidden" id="edit_set_start_time_data" value="Yes" />  
-                      <input type="hidden" id="edit_set_end_time_data" value="Yes" />  
+                      <input type="hidden" id="edit_set_start_time_data" name="edit_set_start_time_data" value="Yes" />  
+                      <input type="hidden" id="edit_set_end_time_data" name="edit_set_end_time_data" value="Yes" />  
                       <input type="hidden" name="set_end_date_data" id="edit_set_end_date_data" value="Yes" />  
                     </div>
                   </div>
@@ -443,12 +445,7 @@ $("#create_event_btn").click(function(){
      
 if($('#create_event_frm').parsley().validate()==true  && date_compare()==true ){
   
-  //$('#create_event_frm').submit();
-  $.ajaxSetup({
-      headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+
 $('#create_event_alert').show().html(loader); 
 console.log("test");
 var action="{{route('event')}}";
